@@ -1,0 +1,23 @@
+{
+	"name": "email-api",
+	"version": "1.0.0",
+	"description": "A typescript api to send emails using code.",
+	"main": "dist/index.js",
+	"scripts": {
+		"test": ""
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/ridays2001/email-api.git"
+	},
+	"author": "Riday <ridayshah2001@gmail.com>",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/ridays2001/email-api/issues"
+	},
+	"homepage": "https://github.com/ridays2001/email-api#readme",
+	"devDependencies": {
+		"@tsconfig/node14": "^1.0.0",
+		"@types/node": "^14.11.8"
+	}
+}
