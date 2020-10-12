@@ -4,7 +4,7 @@
 	"description": "A typescript api to send emails using code.",
 	"main": "dist/index.js",
 	"scripts": {
-		"test": ""
+		"test": "nodemon"
 	},
 	"repository": {
 		"type": "git",
