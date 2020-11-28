@@ -8,7 +8,7 @@ import resetPw from '../templates/resetPw';
 export const verifyMail = async (email: string, username: string) => {
 	const subject = `Email Verification - ${username}`;
 	const code = randomString();
-	const link = `${process.env.URL}/verify?username=${username}&code=${encodeURIComponent(code)}`;
+	const link = `${process.env.URL}/verify?username=${encodeURIComponent(username)}&code=${encodeURIComponent(code)}`;
 	const text = `Hello ${username},\nYour verification code is ${code}, or follow the link -\n${link}`;
 	const html = verification(username, code, link);
 	await sendMail(email, subject, text, html);
@@ -18,7 +18,7 @@ export const verifyMail = async (email: string, username: string) => {
 export const resetMail = async (email: string, username: string) => {
 	const subject = `Reset Password - ${username}`;
 	const code = randomString();
-	const link = `${process.env.URL}/reset-pwd/${username}/${code}`;
+	const link = `${process.env.URL}/reset-pwd?username=${encodeURIComponent(username)}&code=${encodeURIComponent(code)}`;
 	const text = `Hello ${username},\nPlease copy paste this link into your browser to reset your password -\n${link}`;
 	const html = resetPw(username, link);
 	await sendMail(email, subject, text, html);
@@ -40,6 +40,7 @@ const sendMail = async (email: string, subject: string, text: string, html: stri
 	client.setCredentials({ refresh_token: refToken });
 	const token: unknown = client.getAccessToken();
 
+	// cSpell: disable
 	const smtp = nodemailer.createTransport({
 		service: 'gmail',
 		auth: {
@@ -54,6 +55,7 @@ const sendMail = async (email: string, subject: string, text: string, html: stri
 			rejectUnauthorized: false
 		}
 	});
+	// cSpell: enable
 	smtp.sendMail(
 		{
 			from: {
