@@ -25,7 +25,7 @@ app.post('/', async (req, res) => {
 	if (req.headers.authorization !== process.env.PASSWORD) return res.status(500).end('Error: Access blocked!');
 	const { email, username, type } = req.body as RequestBody;
 	if (type !== 'verify' && type !== 'reset') return res.status(500).end('Error: Invalid email type!');
-	const code = type === 'verify' ? await verifyMail(email, username) : resetMail(email, username);
+	const code = type === 'verify' ? await verifyMail(email, username) : await resetMail(email, username);
 	res.json({ email, code });
 });
 
